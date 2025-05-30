@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inconsolata } from 'next/font/google'
+import { Background } from './components/Background'
 import './globals.css'
 
 const iconsolata = Inconsolata({
@@ -19,8 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${iconsolata.className} antialiased`}>
-        {children}
+      <body className={`${iconsolata.className} antialiased min-h-screen relative`}>
+        <Background/>
+        <main className='relative z-10'>
+          {children}
+        </main>
       </body>
     </html>
   )
