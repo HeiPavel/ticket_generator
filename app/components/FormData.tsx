@@ -3,17 +3,17 @@
 import { useState, createContext, ReactNode } from 'react'
 import { UserData } from './Form'
 
-interface FormData extends Omit<UserData, 'avatar'> {
+export interface FormDataType extends Omit<UserData, 'avatar'> {
   avatar: string
   isValid: boolean
 }
 
-type FormContextType = {
-  data: FormData
-  setData: (data: FormData) => void
+export type FormContextType = {
+  data: FormDataType
+  setData: (data: FormDataType) => void
 }
 
-export const defaultData: FormData = {
+export const defaultData: FormDataType = {
   avatar: '',
   name: '',
   email: '',
@@ -23,13 +23,13 @@ export const defaultData: FormData = {
 
 export const defaultValue: FormContextType = {
   data: defaultData,
-  setData: (data: FormData) => undefined
+  setData: (data: FormDataType) => undefined
 }
 
 export const FormContext = createContext<FormContextType>(defaultValue)
 
 export function FormData({children}: Readonly<{children: ReactNode}>) {
-  const [data, setData] = useState<FormData>(defaultData)
+  const [data, setData] = useState<FormDataType>(defaultData)
 
   const context: FormContextType = {
     data,

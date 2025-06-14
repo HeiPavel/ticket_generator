@@ -1,12 +1,13 @@
 'use client'
 
-import { useContext, InputEvent, ClipboardEvent } from 'react'
+import { useContext, useEffect, InputEvent, ClipboardEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { FormContext } from './FormData'
 import { FileInput } from './FileInput'
+import { defaultData } from './FormData'
 
 const ACCEPTED_IMAGE_TYPES = [
   "image/jpg",
@@ -99,6 +100,10 @@ export function Form() {
 
     router.push('./ticket')
   }
+
+  useEffect(() => {
+    setData(defaultData)
+  }, [])
 
   return (
     <div className='w-full flex justify-center'>

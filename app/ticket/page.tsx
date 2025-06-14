@@ -1,24 +1,18 @@
 'use client'
 
-import Image from 'next/image'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { FormContext } from '../components/FormData'
+import { useCleanAndRedirect } from '../components/hooks/useCleanAndRedirect'
 
-export default function Ticket() {
+import { Ticket } from '../components/Ticket'
+
+export default function TicketPage() {
   const {data} = useContext(FormContext)
+  const isMounted = useCleanAndRedirect(data.avatar, data.isValid)
 
-  useEffect(() => {
-    return () => URL.revokeObjectURL(data.avatar)
-  }, [data.avatar])
+  if (!isMounted) return
 
   return (
-    <div className='relative size-56 border border-black'>
-      <Image
-        src={data.avatar}
-        alt='User photo'
-        className='object-cover'
-        fill
-      />
-    </div>
+    <Ticket data={data}/>
   )
 }
