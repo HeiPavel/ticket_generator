@@ -9,8 +9,10 @@
   --color-white: #ffffff;
   --color-gray-light: #d2d1d6;
   --color-gray-medium: #8784a4;
-  --color-gray-dark: rgb(75, 72, 106);
+  --color-gray-medium-dark: #4b486a;
+  --color-gray-dark: #342d56;
   --color-blue-dark: #0c082b;
   --color-orange-light: #f57261;
   --color-orange-medium: #e16151;
+  --color-blur: rgba(210, 209, 214, 0.05);
 }

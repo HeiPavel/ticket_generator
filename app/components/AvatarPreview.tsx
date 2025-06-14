@@ -45,7 +45,7 @@ export function AvatarPreview({path}: {path: string}) {
       <>
         <label 
           htmlFor='avatar'
-          className='block p-2 rounded-lg bg-gray-dark border border-gray-medium cursor-pointer'
+          className='block p-2 rounded-lg bg-gray-dark border border-gray-medium-dark cursor-pointer'
         >
           <Image
             src={uploadIcon}
@@ -58,7 +58,7 @@ export function AvatarPreview({path}: {path: string}) {
   }
 
   return (
-    <div className='relative h-full flex justify-center items-center'>
+    <div className='relative z-10 h-full flex justify-center items-center'>
       <div className='flex flex-col items-center gap-3'>
         {preview()}
       </div>

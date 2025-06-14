@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, DragEvent } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useController } from 'react-hook-form'
 import { AvatarPreview } from './AvatarPreview'
 import { UserData } from './Form'
 
@@ -16,8 +16,11 @@ export function FileInput() {
     },
     setValue,
     watch,
-    setFocus
+    setFocus,
+    control
   } = useFormContext<UserData>()
+
+  const {field: {onBlur}} = useController({control, name: 'avatar'})
 
   const files = watch('avatar')
 
@@ -57,7 +60,7 @@ export function FileInput() {
         Upload Avatar
       </label>
       <div 
-        className={`relative overflow-hidden mt-2 h-36 rounded-xl ${isFocused ? 'border-2 border-gray-medium' : ''} before:absolute before:border-2 before:border-dashed before:border-gray-medium before:rounded-xl before:-inset-[1px]`}
+        className={`relative overflow-hidden mt-2 h-36 rounded-xl ${isFocused ? 'border-2 border-gray-medium' : ''} before:absolute before:border-2 before:border-dashed before:border-gray-medium before:rounded-xl before:-inset-[1px] bg-blur backdrop-blur-xs`}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={() => setIsFocused(false)}
@@ -71,7 +74,10 @@ export function FileInput() {
         accept='image/png, image/jpg, image/jpeg'
         className='size-0 opacity-0'
         onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onBlur={() => {
+          setIsFocused(false)
+          onBlur()
+        }}
       />     
       <p className='text-xs min-h-4 text-red-700'>{errors.avatar?.message ? errors.avatar?.message : ''}</p>
     </>
