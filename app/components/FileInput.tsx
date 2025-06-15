@@ -51,7 +51,7 @@ export function FileInput() {
   }, [files?.[0]])
 
   return (
-    <>
+    <div className='relative'>
       <label 
         htmlFor='avatar'
         className='text-lg font-medium'
@@ -72,7 +72,7 @@ export function FileInput() {
         id='avatar'
         {...register('avatar')}
         accept='image/png, image/jpg, image/jpeg'
-        className='size-0 opacity-0'
+        className='absolute size-0 opacity-0'
         onFocus={() => setIsFocused(true)}
         onBlur={() => {
           setIsFocused(false)
@@ -80,6 +80,6 @@ export function FileInput() {
         }}
       />     
       <p className='text-xs min-h-4 text-red-700'>{errors.avatar?.message ? errors.avatar?.message : ''}</p>
-    </>
+    </div>
   )
 }
