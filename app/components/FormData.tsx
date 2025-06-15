@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, createContext, ReactNode } from 'react'
-import { UserData } from './Form'
+import { UserData } from '../util/schema'
 
 export interface FormDataType extends Omit<UserData, 'avatar'> {
   avatar: string

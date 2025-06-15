@@ -3,7 +3,7 @@
 import { useState, useEffect, DragEvent } from 'react'
 import { useFormContext, useController } from 'react-hook-form'
 import { AvatarPreview } from './AvatarPreview'
-import { UserData } from './Form'
+import { UserData } from '../util/schema'
 
 export function FileInput() {
   const [path, setPath] = useState('')

@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import uploadIcon from '@/public/assets/icons/icon-upload.svg'
 import { useFormContext } from 'react-hook-form'
-import { UserData } from './Form'
+import { UserData } from '../util/schema'
 
 export function AvatarPreview({path}: {path: string}) {
   const {resetField, getFieldState} = useFormContext<UserData>()

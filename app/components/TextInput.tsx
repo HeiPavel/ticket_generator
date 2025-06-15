@@ -2,7 +2,8 @@
 
 import { InputEvent, ClipboardEvent } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { UserData, TextInputType } from './Form'
+import { TextInputType } from './Form'
+import { UserData } from '../util/schema'
 
 export function TextInput({name, placeholder, label}: TextInputType) {
   const {
