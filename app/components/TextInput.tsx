@@ -4,6 +4,7 @@ import { InputEvent, ClipboardEvent } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { TextInputType } from './Form'
 import { UserData } from '../util/schema'
+import { InputError } from './InputError'
 
 export function TextInput({name, placeholder, label}: TextInputType) {
   const {
@@ -31,17 +32,26 @@ export function TextInput({name, placeholder, label}: TextInputType) {
   }
 
   return (
-    <div className='flex flex-col'>
-      <label htmlFor={name}>{label}</label>
+    <div className='mt-1 flex flex-col'>
+      <label 
+        className='text-xl font-medium'
+        htmlFor={name}
+      >
+        {label}
+      </label>
         <input
           type='text'
           id={name}
           {...register(name)}
           onBeforeInput={handleInput}
           onPaste={handlePaste}
-          className='border border-white rounded-xl text-lg'
+          className='mt-2 border border-white rounded-xl text-lg'
         />
-        <p className='text-xs min-h-4 text-red-700'>{errors[name]?.message ? errors[name]?.message : ''}</p>
+        <InputError
+          errors={errors}
+          name={name}
+          isFileType={false}
+        />
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { useState, useEffect, DragEvent } from 'react'
 import { useFormContext, useController } from 'react-hook-form'
 import { AvatarPreview } from './AvatarPreview'
 import { UserData } from '../util/schema'
+import { InputError } from './InputError'
 
 export function FileInput() {
   const [path, setPath] = useState('')
@@ -51,10 +52,10 @@ export function FileInput() {
   }, [files?.[0]])
 
   return (
-    <div className='relative'>
+    <div className='relative pb-3'>
       <label 
         htmlFor='avatar'
-        className='text-lg font-medium'
+        className='text-xl font-medium'
         onClick={event => event.preventDefault()}
       >
         Upload Avatar
@@ -79,7 +80,11 @@ export function FileInput() {
           onBlur()
         }}
       />     
-      <p className='text-xs min-h-4 text-red-700'>{errors.avatar?.message ? errors.avatar?.message : ''}</p>
+      <InputError
+        errors={errors}
+        name='avatar'
+        isFileType={true}
+      />
     </div>
   )
 }
