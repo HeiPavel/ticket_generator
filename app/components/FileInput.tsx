@@ -52,7 +52,7 @@ export function FileInput() {
   }, [files?.[0]])
 
   return (
-    <div className='relative pb-3'>
+    <div className='relative'>
       <label 
         htmlFor='avatar'
         className='text-xl font-medium'

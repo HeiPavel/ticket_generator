@@ -9,7 +9,7 @@ type Props = {
 
 export function Message({message, isInfoMessage = false}: Props) {
   return (
-    <p className={`${isInfoMessage ? 'text-white' : 'text-orange-medium'} flex gap-2 items-center text-xs`}>
+    <p className={`${isInfoMessage ? 'text-gray-light' : 'text-orange-medium'} flex gap-2 items-center text-xs`}>
       <FiInfo/>
       <span>{message}</span>
     </p>

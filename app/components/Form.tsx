@@ -62,7 +62,7 @@ export function Form() {
   }, [])
 
   return (
-    <div className='w-full flex justify-center'>
+    <div className='pb-28 tablet:pb-36 w-full flex justify-center'>
       <FormProvider {...methods}>
         <form
           className='mt-10 grow flex flex-col text-white max-w-[460px]'
@@ -77,7 +77,7 @@ export function Form() {
           ))}
           <button
             type='submit'
-            className='px-3 py-2 border border-white rounded-xl'
+            className='mt-3 px-3 py-2 border border-white rounded-xl'
           >
             Generate My Ticket
           </button>

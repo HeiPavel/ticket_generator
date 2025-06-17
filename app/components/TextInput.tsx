@@ -45,7 +45,10 @@ export function TextInput({name, placeholder, label}: TextInputType) {
           {...register(name)}
           onBeforeInput={handleInput}
           onPaste={handlePaste}
-          className='mt-2 border border-white rounded-xl text-lg'
+          className='mt-2 px-3 h-12 border border-gray-medium rounded-xl text-white text-lg bg-blur backdrop-blur-xs 
+            placeholder:text-gray-light hover:border-gray-light focus:hover:border-gray-medium 
+            focus:outline-solid focus:outline-2 focus:outline-gray-medium focus:outline-offset-2 transition-[border-color] duration-150 ease-linear'
+          placeholder={placeholder}
         />
         <InputError
           errors={errors}
