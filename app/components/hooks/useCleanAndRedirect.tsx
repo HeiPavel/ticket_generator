@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react'
+'use client'
+
+import { useEffect } from 'react'
+import { useMounted } from './useMounted'
 import { redirect } from 'next/navigation'
 
 export function useCleanAndRedirect(path: string, isValid: boolean) {
-  const [isMounted, setIsMounted] = useState(false)
+  const isMounted = useMounted()
 
   if (isMounted && !isValid) redirect('/')
 
   useEffect(() => {
-    if (!isMounted) {
-      setIsMounted(true)
-      return
-    }
+    if (!isMounted) return
 
     return () => URL.revokeObjectURL(path)
   }, [path, isMounted])
