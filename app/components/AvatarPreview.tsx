@@ -4,8 +4,22 @@ import Image from 'next/image'
 import uploadIcon from '@/public/assets/icons/icon-upload.svg'
 import { useFormContext } from 'react-hook-form'
 import { UserData } from '../util/schema'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence, TargetAndTransition } from 'motion/react'
 import { useMounted } from './hooks/useMounted'
+
+type MotionProps = {
+  initial: TargetAndTransition
+  animate: TargetAndTransition
+  exit: TargetAndTransition
+}
+
+const generateMotionProps = (isMounted: boolean, delay: number): MotionProps => {
+  return {
+    initial: {x: isMounted ? 100 : 0, opacity: isMounted ? 0 : 1},
+    animate: {x: 0, opacity: 1, transition: {delay, bounce: 0.35, stiffness: 450, damping: 15, type: 'spring'}},
+    exit: {x: -100, opacity: 0}
+  }
+}
 
 export function AvatarPreview({path}: {path: string}) {
   const {resetField, getFieldState} = useFormContext<UserData>()
@@ -18,10 +32,9 @@ export function AvatarPreview({path}: {path: string}) {
     if (isPreviewOpen) return (
       <>
         <motion.div
+          key='preview image'
           className='relative size-14 rounded-md overflow-hidden'
-          initial={{x: 100, opacity: 0}}
-          animate={{x: 0, opacity: 1}}
-          exit={{x: -100, opacity: 0}}
+          {...generateMotionProps(true, 0)}
         >
           <Image
             src={path}
@@ -31,10 +44,9 @@ export function AvatarPreview({path}: {path: string}) {
           />
         </motion.div>
         <motion.div 
+          key='buttons'
           className='flex gap-1.5 text-sm text-gray-light'
-          initial={{x: 100, opacity: 0}}
-          animate={{x: 0, opacity: 1}}
-          exit={{x: -100, opacity: 0}}
+          {...generateMotionProps(true, 0.1)}
         >
           <button
             type='reset'
@@ -64,9 +76,7 @@ export function AvatarPreview({path}: {path: string}) {
           className='block p-2 rounded-lg bg-gray-dark border border-gray-medium-dark cursor-pointer'
           whileHover={{scale: 1.15}}
           whileTap={{scale: 0.85}}
-          initial={{x: isMounted ? 100 : 0, opacity: isMounted ? 0 : 1}}
-          animate={{x: 0, opacity: 1}}
-          exit={{x: -100, opacity: 0}}
+          {...generateMotionProps(isMounted, 0)}
         >
           <Image
             src={uploadIcon}
@@ -76,9 +86,7 @@ export function AvatarPreview({path}: {path: string}) {
         <motion.p
           key='upload description' 
           className='text-gray-light text-lg'
-          initial={{x: isMounted ? 100 : 0, opacity: isMounted ? 0 : 1}}
-          animate={{x: 0, opacity: 1}}
-          exit={{x: -100, opacity: 0}}
+          {...generateMotionProps(isMounted, 0.1)}
         >
           Drag and drop or click to upload
         </motion.p>
