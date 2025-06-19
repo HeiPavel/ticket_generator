@@ -8,6 +8,7 @@ import { schema, UserData } from '../util/schema'
 import { FormContext } from './FormData'
 import { FileInput } from './FileInput'
 import { TextInput } from './TextInput'
+import { SubmitButton } from './SubmitButton'
 import { defaultData } from './FormData'
 
 const textFieldData: TextInputType[] = [
@@ -75,12 +76,7 @@ export function Form() {
               {...data}
             />
           ))}
-          <button
-            type='submit'
-            className='mt-3 px-3 py-2 border border-white rounded-xl'
-          >
-            Generate My Ticket
-          </button>
+          <SubmitButton/>
         </form>
       </FormProvider>
     </div>

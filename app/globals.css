@@ -15,4 +15,11 @@
   --color-orange-light: #f57261;
   --color-orange-medium: #e16151;
   --color-blur: rgba(210, 209, 214, 0.05);
+  --drop-shadow-button: drop-shadow(2px 2px 5px rgba(217, 217, 217, 0.7)) drop-shadow(-2px -2px 5px rgba(217, 217, 217, 0.7));
+}
+
+@layer components {
+  .button-shadow-hover:hover {
+    filter: var(--drop-shadow-button);
+  }
 }

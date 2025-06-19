@@ -73,6 +73,7 @@ export function AvatarPreview({path}: {path: string}) {
         <motion.label
           key='upload label' 
           htmlFor='avatar'
+          tabIndex={-1}
           className='block p-2 rounded-lg bg-gray-dark border border-gray-medium-dark cursor-pointer'
           whileHover={{scale: 1.15}}
           whileTap={{scale: 0.85}}
