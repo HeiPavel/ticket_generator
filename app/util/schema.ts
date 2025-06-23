@@ -41,8 +41,12 @@ export const schema = z.object({
   gitHubUsername: z.string()
     .min(1, {message: 'GitHub Username required.'})
     .refine(
+      string => string.startsWith('@'),
+      'Invalid format. Must start with "@".'
+    )
+    .refine(
       string => /^@(?=.{1,39}$)[a-z\d](?:[a-z\d]|-(?=[a-z\d]))*$/.test(string),
-      'Invalid format. Must start with "@" and adjust GitHub rules.'
+      'Invalid format. Must adjust GitHub rules.'
     )
 })
 

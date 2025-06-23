@@ -19,7 +19,9 @@
 }
 
 @layer components {
-  .button-shadow-hover:hover {
-    filter: var(--drop-shadow-button);
+  @media (hover: hover) {
+    .button-shadow-hover:hover {
+      filter: var(--drop-shadow-button);
+    }
   }
 }
