@@ -6,7 +6,7 @@ import ticket from '@/public/assets/icons/pattern-ticket.svg'
 
 export function Ticket({data}: {data: FormDataType}) {
   return (
-    <div className='w-full flex justify-center'>
+    <div className='mt-16 px-4 tablet:mt-28 w-full flex justify-center'>
       <div className='relative flex justify-center items-center overflow-hidden max-w-[600px] aspect-[15/7] grow backdrop-blur-xl clip-path-ticket'>
         <Image
           src={ticket}

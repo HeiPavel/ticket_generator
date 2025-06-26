@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={`${iconsolata.className} antialiased min-h-screen relative flex flex-col`}>
         <Background/>
         <Header/>
-        <main className='grow relative z-10 px-4 flex flex-col items-center'>
+        <main className='grow relative z-10 flex flex-col items-center'>
           <FormData>
             {children}
           </FormData>
