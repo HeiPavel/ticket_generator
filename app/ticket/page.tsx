@@ -5,6 +5,7 @@ import { FormContext } from '../components/FormData'
 import { useCleanAndRedirect } from '../components/hooks/useCleanAndRedirect'
 import { TicketTitle } from '../components/TicketTitle'
 import { Ticket } from '../components/Ticket'
+import { LinkBack } from '../components/LinkBack'
 
 export default function TicketPage() {
   const {data} = useContext(FormContext)
@@ -19,6 +20,7 @@ export default function TicketPage() {
         email={data.email}
       />
       <Ticket data={data}/>
+      <LinkBack/>
     </>
   )
 }

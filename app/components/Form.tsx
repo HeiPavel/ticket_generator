@@ -65,7 +65,7 @@ export function Form() {
   }, [])
 
   return (
-    <div className='px-4 w-full flex justify-center'>
+    <div className='w-full flex justify-center'>
       <FormProvider {...methods}>
         <form
           className='mt-10 grow flex flex-col text-white max-w-[460px]'
