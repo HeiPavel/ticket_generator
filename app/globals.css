@@ -18,7 +18,7 @@
   --color-orange-gradient: #f37362;
   --color-blur: rgba(210, 209, 214, 0.05);
   --drop-shadow-button: drop-shadow(2px 2px 5px rgba(217, 217, 217, 0.7)) drop-shadow(-2px -2px 5px rgba(217, 217, 217, 0.7));
-  --animate-link-apear: link-apear 0.3s ease-in;
+  --animate-appear: appear 0.3s ease-in;
 }
 
 @layer components {
@@ -36,7 +36,7 @@
     writing-mode: vertical-lr;
   }
 
-  @keyframes link-apear {
+  @keyframes appear {
     0% {
       opacity: 0;
     }

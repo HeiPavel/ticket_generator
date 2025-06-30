@@ -7,7 +7,7 @@ type Props = {
 
 export function TicketTitle({name, email}: Props) {
   return (
-    <div className='tablet:mt-3 tablet:max-w-[700px] laptop:max-w-4xl flex flex-col items-center text-center'>
+    <div className='tablet:mt-3 tablet:max-w-[700px] laptop:max-w-4xl flex flex-col items-center text-center animate-appear'>
       <h1 className='font-extrabold text-3xl leading-8 tablet:text-5xl tablet:leading-14 laptop:text-6xl laptop:leading-16 text-white laptop:text-balance'>
         Congrats,
         <span className='bg-clip-text bg-linear-to-r from-orange-gradient to-white text-transparent capitalize'>
