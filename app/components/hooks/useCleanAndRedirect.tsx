@@ -11,6 +11,7 @@ export function useCleanAndRedirect(path: string, isValid: boolean) {
 
   useEffect(() => {
     if (!isMounted) return
+    window.scroll(0,0)
 
     return () => URL.revokeObjectURL(path)
   }, [path, isMounted])

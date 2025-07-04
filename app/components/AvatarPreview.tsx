@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import uploadIcon from '@/public/assets/icons/icon-upload.svg'
+import {ReactComponent as UploadIcon} from '@/public/assets/icons/icon-upload.svg'
 import { useFormContext } from 'react-hook-form'
 import { UserData } from '../util/schema'
 import { motion, AnimatePresence, TargetAndTransition } from 'motion/react'
@@ -79,10 +79,7 @@ export function AvatarPreview({path}: {path: string}) {
           whileTap={{scale: 0.85}}
           {...generateMotionProps(isMounted, 0)}
         >
-          <Image
-            src={uploadIcon}
-            alt='Upload icon'
-          />
+          <UploadIcon/>
         </motion.label>
         <motion.p
           key='upload description' 

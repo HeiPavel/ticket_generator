@@ -50,7 +50,9 @@ export function Form() {
 
   const onSubmit: SubmitHandler<UserData> = (data) => {
     setData({
-      ...data,
+      name: data.name.toLowerCase().split(' ').filter(name => name).join(' '),
+      email: data.email.toLowerCase(),
+      gitHubUsername: data.gitHubUsername,
       avatar: URL.createObjectURL(data.avatar[0]),
       isValid: true
     })
@@ -63,7 +65,7 @@ export function Form() {
   }, [])
 
   return (
-    <div className='pb-28 tablet:pb-36 w-full flex justify-center'>
+    <div className='w-full flex justify-center'>
       <FormProvider {...methods}>
         <form
           className='mt-10 grow flex flex-col text-white max-w-[460px]'

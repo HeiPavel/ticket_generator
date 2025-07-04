@@ -37,12 +37,19 @@ export const schema = z.object({
       string => /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(string),
       "Only letters, spaces, apostrophes (') and hyphens (-) are allowed."
     ),
-  email: z.string().min(1, {message: 'Email required'}).email(),
+  email: z.string()
+    .min(1, {message: 'Email required'})
+    .max(128, {message: 'Max length 128 characters.'})
+    .email(),
   gitHubUsername: z.string()
     .min(1, {message: 'GitHub Username required.'})
     .refine(
+      string => string.startsWith('@'),
+      'Invalid format. Must start with "@".'
+    )
+    .refine(
       string => /^@(?=.{1,39}$)[a-z\d](?:[a-z\d]|-(?=[a-z\d]))*$/.test(string),
-      'Invalid format. Must start with "@" and adjust GitHub rules.'
+      'Invalid format. Must adjust GitHub rules.'
     )
 })
 
