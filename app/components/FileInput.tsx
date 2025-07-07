@@ -61,7 +61,7 @@ export function FileInput() {
         Upload Avatar
       </label>
       <div 
-        className={`relative overflow-hidden mt-2 h-36 rounded-xl ${isFocused ? 'border-2 border-gray-medium' : ''} before:absolute before:border-2 before:border-dashed before:border-gray-medium before:rounded-xl before:-inset-[1px] bg-blur backdrop-blur-xs`}
+        className={`relative mt-2 h-36 rounded-xl ${isFocused ? 'outline-2 outline-solid outline-gray-medium outline-offset-2' : ''} bg-(image:--bg-image) bg-blur backdrop-blur-xs`}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={() => setIsFocused(false)}
