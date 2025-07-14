@@ -2,13 +2,11 @@
 
 import Image from 'next/image'
 import { FormDataType } from './FormData'
-import { generateEventDate } from '../util/generateEventDate'
-import { generateTicketNumber } from '../util/generateTicketNumber'
 import {ReactComponent as Logo} from '@/public/assets/icons/logo-mark.svg'
 import {ReactComponent as GithubIcon} from '@/public/assets/icons/icon-github.svg'
 
 export function TicketData({data}: {data: FormDataType}) {
-  const {avatar, name, gitHubUsername} = data
+  const {avatar, name, gitHubUsername, eventDate, ticketID} = data
 
   return (
     <>
@@ -19,7 +17,7 @@ export function TicketData({data}: {data: FormDataType}) {
           </div>
           <div>
             <p className='text-white leading-6 text-2xl sm:text-3xl sm:leading-[30px] tablet:leading-9 tablet:text-4xl font-bold'>Coding Conf</p>
-            <p className='mt-1 tablet:mt-3 text-gray-light text-sm sm:text-base tablet:text-lg'>{`${generateEventDate()} / Austin, TX`}</p>
+            <p className='mt-1 tablet:mt-3 text-gray-light text-sm sm:text-base tablet:text-lg'>{`${eventDate} / Austin, TX`}</p>
           </div>
         </div>
         <div className='flex gap-3 items-center'>
@@ -43,7 +41,7 @@ export function TicketData({data}: {data: FormDataType}) {
         </div>
       </div>
       <div className='basis-1/5 flex justify-center items-center'>
-        <p className='writing-mode-vertical text-xl sm:text-2xl tablet:text-3xl font-bold text-gray-sharp'>{`#${generateTicketNumber()}`}</p>
+        <p className='writing-mode-vertical text-xl sm:text-2xl tablet:text-3xl font-bold text-gray-sharp'>{`#${ticketID}`}</p>
       </div>
     </>
   )

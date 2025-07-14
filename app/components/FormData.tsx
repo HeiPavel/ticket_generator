@@ -6,6 +6,8 @@ import { UserData } from '../util/schema'
 export interface FormDataType extends Omit<UserData, 'avatar'> {
   avatar: string
   isValid: boolean
+  eventDate: string
+  ticketID: string
 }
 
 export type FormContextType = {
@@ -18,7 +20,9 @@ export const defaultData: FormDataType = {
   name: '',
   email: '',
   gitHubUsername: '',
-  isValid: false
+  isValid: false,
+  eventDate: '',
+  ticketID: ''
 }
 
 export const defaultValue: FormContextType = {
