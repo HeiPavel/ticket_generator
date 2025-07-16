@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -47,7 +47,8 @@ export type TextInputType = {
 export function Form() {
   const {setData} = useContext(FormContext)
   const router = useRouter()
-
+  const isSubmitPassedRef = useRef(false)
+  
   const methods = useForm<UserData>({
     resolver: zodResolver(schema),
     mode: 'onChange'
@@ -69,6 +70,10 @@ export function Form() {
   }
 
   const onSubmit: SubmitHandler<UserData> = (data) => {
+    if (isSubmitPassedRef.current) {
+      return
+    } else isSubmitPassedRef.current = true
+    
     const textData: TextData = {
       name: data.name.toLowerCase().split(' ').filter(name => name).join(' '),
       email: data.email.toLowerCase(),

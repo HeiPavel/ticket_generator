@@ -15,7 +15,7 @@ export async function POST (request: Request) {
 
   try {
     const {data, error} = await resend.emails.send({
-      from: 'Ticket <eventticket@resend.dev>',
+      from: `email@${process.env.EMAIL_DOMAIN as string}`,
       to: userData.email,
       subject: 'Event ticket',
       react: Email({...userData})
