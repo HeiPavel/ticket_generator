@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   description: 'Create a personalized event ticket instantly after filling out a simple form.',
   twitter: {
     card: 'summary_large_image'
+  },
+  verification: {
+    google: 'zm1RyOb1pXk-onkAmaiQy3K6rIczA99wKk4vLZun4gg'
   }
 }
 

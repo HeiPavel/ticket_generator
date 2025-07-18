@@ -1,10 +1,12 @@
 'use client'
 
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { schema, UserData } from '../util/schema'
+import { generateEventDate } from '../util/generateEventDate'
+import { generateTicketNumber } from '../util/generateTicketNumber'
 import { FormContext } from './FormData'
 import { FileInput } from './FileInput'
 import { TextInput } from './TextInput'
@@ -31,6 +33,11 @@ const textFieldData: TextInputType[] = [
 
 export type FieldName = 'name' | 'email' | 'gitHubUsername'
 
+export interface TextData extends Omit<UserData, 'avatar'> {
+  eventDate: string
+  ticketID: string
+}
+
 export type TextInputType = {
   name: FieldName
   placeholder: string
@@ -40,7 +47,8 @@ export type TextInputType = {
 export function Form() {
   const {setData} = useContext(FormContext)
   const router = useRouter()
-
+  const isSubmitPassedRef = useRef(false)
+  
   const methods = useForm<UserData>({
     resolver: zodResolver(schema),
     mode: 'onChange'
@@ -48,14 +56,39 @@ export function Form() {
 
   const {handleSubmit} = methods
 
+  const handleSendData = (data: TextData) => {
+    const formData = new FormData()
+
+    for (const key in data) {
+      formData.set(key, data[key as keyof TextData])
+    }
+
+    fetch('/api/send-email', {
+      method: 'POST',
+      body: formData
+    })
+  }
+
   const onSubmit: SubmitHandler<UserData> = (data) => {
-    setData({
+    if (isSubmitPassedRef.current) {
+      return
+    } else isSubmitPassedRef.current = true
+    
+    const textData: TextData = {
       name: data.name.toLowerCase().split(' ').filter(name => name).join(' '),
       email: data.email.toLowerCase(),
       gitHubUsername: data.gitHubUsername,
+      eventDate: generateEventDate(),
+      ticketID: generateTicketNumber()
+    }
+
+    setData({
       avatar: URL.createObjectURL(data.avatar[0]),
-      isValid: true
+      isValid: true,
+      ...textData
     })
+
+    handleSendData(textData)
 
     router.push('./ticket')
   }
